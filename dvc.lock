@@ -82,3 +82,43 @@ stages:
       hash: md5
       md5: 4580e4045bba1d4487816b32899782fa
       size: 824341
+  model_evaluation:
+    cmd: python -m src.models.model_evaluation
+    deps:
+    - path: data/feature/test_bow.csv
+      hash: md5
+      md5: 7820d91eea3f250bd651ea438955e73e
+      size: 20780122
+    - path: models/model.pkl
+      hash: md5
+      md5: 4580e4045bba1d4487816b32899782fa
+      size: 824341
+    - path: src/models/model_evaluation.py
+      hash: md5
+      md5: d8207c1f6355c80dc9e54d10e9ae0bf6
+      size: 7121
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 817f195e822843a1f7bff7747b3b37db
+      size: 126
+    - path: reports/confusion_matrix.npy
+      hash: md5
+      md5: a8fc9dae2b5875b70103a44dd5967df8
+      size: 160
+  visualize:
+    cmd: python -m src.visualization.visualize
+    deps:
+    - path: reports/confusion_matrix.npy
+      hash: md5
+      md5: a8fc9dae2b5875b70103a44dd5967df8
+      size: 160
+    - path: src/visualization/visualize.py
+      hash: md5
+      md5: c1585cd6c422037d35121865d81d365a
+      size: 1019
+    outs:
+    - path: reports/figures/confusion_matrix.png
+      hash: md5
+      md5: f82b9fdccb0a0eda3a274c7fc0177c7b
+      size: 15851
